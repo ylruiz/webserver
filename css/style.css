@@ -1,3 +1,16 @@
-html{
-  
+/** global element styling **/
+.fa {
+  color: white;
+}
+/** about_me section **/
+
+/** portfile section **/
+
+/** contact section **/
+hr {
+  border-width: 1px;
+}
+
+#contact {
+  background-image: linear-gradient(141deg, #2779BD 0%, #3490DC 25%, #BCDEFA 75%);
 }
