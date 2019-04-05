@@ -8,6 +8,7 @@ const express = require('express');
  * For more info see: https://github.com/expressjs/body-parser
  */
 const bodyParser = require('body-parser');
+
 // create your app
 const app = express();
 const port = 3000;
@@ -19,7 +20,7 @@ app.use(bodyParser.json());
  * is the route that express uses when we visit
  * our site initially
  */
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   /*
    * The form's action is '/' and its method is 'POST',
    * so the `app.post('/', ...` route will receive the
@@ -40,7 +41,7 @@ app.get('/', function(req, res) {
  * As explained above, usage of 'body-parser' means
  * that `req.body` will be filled in with the form elements
  */
-app.post('/', function(req, res){
+app.post('/', (req, res) => {
   var name = req.body.name;
   if (name == "") {
     res.send("Hello world!");
