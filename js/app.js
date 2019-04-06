@@ -1,11 +1,11 @@
 const express = require('express');
 /*
  * body-parser is a piece of express middleware that 
- *   reads a form's input and stores it as a javascript
- *   object accessible through `req.body` 
+ * reads a form's input and stores it as a javascript
+ * object accessible through `req.body` 
  *
  * 'body-parser' must be installed (via `npm install body-parser`)
- * For more info see: https://github.com/expressjs/body-parser
+ *  For more info see: https://github.com/expressjs/body-parser
  */
 const bodyParser = require('body-parser');
 
