@@ -21,19 +21,12 @@ app.use(bodyParser.json());
  * our site initially
  */
 app.get('/', (req, res) => {
-  /*
-   * The form's action is '/' and its method is 'POST',
-   * so the `app.post('/', ...` route will receive the
-   * result of our form
-   */
-  var html =  '<form action="/" method="post">' +
-              'Enter your name:' +
-              '<br>' +
-              '<input type="text" name="name" placeholder="..." />' +
-              '<br>' +
-              '<button type="submit">Submit</button>' +
-              '</form>';
-  res.send(html);            
+  var name = req.query.name;
+  if (name){
+    res.send("Hello " + name);
+  } else {
+    res.send("Hello world!");
+  }
 });
 
 /*
