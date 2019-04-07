@@ -11,24 +11,15 @@ const contactControler = require('./contact');
  */
 const bodyParser = require('body-parser');
 
-/* The path module provides utilities for working with file and 
- * directory paths.
- */
-const path = require('path');
-const dir = '/home/raimelmedina/Documents/yunet/webserver/';
-
 // create your app
 const app = express();
 const port = 3000;
+
 // configure body-parser
-app.use(express.static(path.join(dir))); // load the styles
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json()); 
-/*
- * A browser's default method is 'GET', so this
- * is the route that express uses when we visit
- * our site initially
- */
+
+// GET root
 app.get('/', (req, res) => {
   var name = req.query.name;
   if (name){
@@ -38,11 +29,7 @@ app.get('/', (req, res) => {
   }
 })
 
-/*
- * This route receives the posted form.
- * As explained above, usage of 'body-parser' means
- * that `req.body` will be filled in with the form elements
- */
+// POST root
 app.post('/', (req, res) => {
   var name = req.body.name;
   if (name == "") {
