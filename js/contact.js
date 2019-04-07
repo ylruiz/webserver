@@ -49,7 +49,7 @@ const postContact = (req, res) => {
     html = "success";
     res.send(html);
   }
-};
+}
 
 module.exports = {
   getContact: getContact,
