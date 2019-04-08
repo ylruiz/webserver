@@ -1,15 +1,13 @@
-let queryName = "";
-
 // GET method route
 const getContact = (req, res) => {
-  queryName = req.query.name;
+  let queryName = req.query.name;
   if (queryName == undefined) {
     queryName = "";
   } 
   var html =`<form action="/contact-us" method="post"> 
                Enter your name*: 
                <br> 
-               <input type="text" name="name" placeholder="Full name" value=${queryName}> 
+               <input type="text" name="name" placeholder="Full name" value="${queryName}"> 
                <br> 
                Enter your email*: 
                <br> 
@@ -32,7 +30,7 @@ const postContact = (req, res) => {
     html =`<form action="/contact-us" method="post"> 
                Enter your name*: 
                <br> 
-               <input type="text" name="name" placeholder="Full name" value="${queryName}"> 
+               <input type="text" name="name" placeholder="Full name"> 
                <br> 
                Enter your email*: 
                <br> 
