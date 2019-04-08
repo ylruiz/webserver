@@ -28,7 +28,7 @@ const postContact = (req, res) => {
   let nameBody = req.body.name;
   let email = req.body.emailAddress;
   var html = "";
-  if (nameBody == "" || email == undefined ){
+  if (nameBody == "" || email == "" ){
     html =`<form action="/contact-us" method="post"> 
                Enter your name*: 
                <br> 
