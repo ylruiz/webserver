@@ -13,7 +13,7 @@ const getContact = (req, res) => {
                <br> 
                Enter your email*: 
                <br> 
-               <input type="email" name="emailAddress" placeholder="example@gmail.com"> 
+               <input type="email" name="email" placeholder="example@gmail.com"> 
                <br>
                Enter your message: 
                <br>
@@ -26,17 +26,17 @@ const getContact = (req, res) => {
 
 const postContact = (req, res) => {
   let nameBody = req.body.name;
-  let email = req.body.emailAddress;
+  let email = req.body.email;
   var html = "";
   if (nameBody == "" || email == "" ){
     html =`<form action="/contact-us" method="post"> 
                Enter your name*: 
                <br> 
-               <input type="text" name="name" placeholder="Full name" value=${queryName}> 
+               <input type="text" name="name" placeholder="Full name" value="${queryName}"> 
                <br> 
                Enter your email*: 
                <br> 
-               <input type="email" name="emailAddress" placeholder="example@gmail.com"> 
+               <input type="email" name="email" placeholder="example@gmail.com"> 
                <br>
                Enter your message: 
                <br>
