@@ -33,18 +33,6 @@ app.get('/', (req, res) => {
   res.render('index');
 })
 
-// POST root
-app.post('/', (req, res) => {
-  /* var name = req.body.name;
-  if (name == "") {
-    res.send("Hello world!");
-  } else {
-    var html = `Hello: ${name}` + '.<br>' +
-               '<a href="/">Try again.</a>';
-    res.send(html);
-  } */
-})
-
 app.get("/contact-us", contactControler.getContact)
 app.post("/contact-us", contactControler.postContact)
 

@@ -4,7 +4,7 @@ const getContact = (req, res) => {
   if (queryName == undefined){
     queryName = "";
   } 
-  res.render('contact', {name: `${queryName}`});
+  res.render('contact', {name: queryName});
 }  
 
 const postContact = (req, res) => {
