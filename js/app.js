@@ -1,6 +1,5 @@
 const express = require('express');
-const mustacheExpress = require('mustache-express');
-const contactControler = require('./js/contact'); 
+const contactControler = require('./contact'); 
 
 /*
  * body-parser is a piece of express middleware that 
@@ -16,21 +15,18 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-// Configure
-app.set('views', './views')
-app.engine('mustache', mustacheExpress()) // Register '.mustache' extension with The Mustache Express
-app.set('view engine', 'mustache')
-/**
- * Pass the path for your partial directory and
- * the extension of the partials within the mustache-express method
- */
-app.engine('mustache', mustacheExpress('./views/partials', '.mustache'))
-app.use(bodyParser.urlencoded({extended: true}))
+// configure body-parser
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json()); 
 
 // GET root
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Hey', message: 'Hello there!' })
+  var name = req.query.name;
+  if (name){
+    res.send("Hello " + name);
+  } else {
+    res.send("Hello world!");
+  }
 })
 
 // POST root
