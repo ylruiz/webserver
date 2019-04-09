@@ -1,6 +1,10 @@
 // GET method route
 const getContact = (req, res) => { 
-  res.render('contact', { title: 'Hey', message: 'Hello there!' });
+  let queryName = req.query.name;
+  if (queryName == undefined){
+    queryName = "";
+  } 
+  res.render('contact', {name: `${queryName}`});
 }  
 
 const postContact = (req, res) => {
@@ -8,7 +12,7 @@ const postContact = (req, res) => {
   let email = req.body.email;
   var html = "";
   if (nameBody == "" || email == "" ){
-    res.render('contact', { title: 'Hey', message: 'Hello there!' });
+    res.render('contact', { name: ""});
   } else {
     html = "success";
     res.send(html);
