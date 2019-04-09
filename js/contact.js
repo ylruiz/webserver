@@ -1,48 +1,14 @@
 // GET method route
-const getContact = (req, res) => {
-  let queryName = req.query.name;
-  if (queryName == undefined) {
-    queryName = "";
-  } 
-  var html =`<form action="/contact-us" method="post"> 
-               Enter your name*: 
-               <br> 
-               <input type="text" name="name" placeholder="Full name" value="${queryName}"> 
-               <br> 
-               Enter your email*: 
-               <br> 
-               <input type="email" name="email" placeholder="example@gmail.com"> 
-               <br>
-               Enter your message: 
-               <br>
-               <textarea name="message" placeholder="Your message"> </textarea>
-               <br>
-               <button>Submit</button> 
-              </form>`;
-    res.send(html);  
-}
+const getContact = (req, res) => { 
+  res.render('contact', { title: 'Hey', message: 'Hello there!' });
+}  
 
 const postContact = (req, res) => {
   let nameBody = req.body.name;
   let email = req.body.email;
   var html = "";
   if (nameBody == "" || email == "" ){
-    html =`<form action="/contact-us" method="post"> 
-               Enter your name*: 
-               <br> 
-               <input type="text" name="name" placeholder="Full name"> 
-               <br> 
-               Enter your email*: 
-               <br> 
-               <input type="email" name="email" placeholder="example@gmail.com"> 
-               <br>
-               Enter your message: 
-               <br>
-               <textarea name="message" placeholder="Your message"> </textarea>
-               <br>
-               <button> Submit </button> 
-              </form>`;
-    res.send(html);
+    res.render('contact', { title: 'Hey', message: 'Hello there!' });
   } else {
     html = "success";
     res.send(html);

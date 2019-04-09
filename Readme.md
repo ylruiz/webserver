@@ -39,9 +39,9 @@ For example, now you can use express module in your js file as following
 ```console
 var express = require('express');
 ```
-## Excecute example.js
+## Excecute app.js
 
 ```console
-> node example.js
+> node app.js
 ```
 

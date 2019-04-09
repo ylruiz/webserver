@@ -20,6 +20,11 @@ const port = 3000;
 app.set('views', './views')
 app.engine('mustache', mustacheExpress()) // Register '.mustache' extension with The Mustache Express
 app.set('view engine', 'mustache')
+/**
+ * Pass the path for your partial directory and
+ * the extension of the partials within the mustache-express method
+ */
+app.engine('mustache', mustacheExpress('./views/partials', '.mustache'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json()); 
 
