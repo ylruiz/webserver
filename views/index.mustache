@@ -1,5 +1,21 @@
-html
-  head
-    title= title
-  body
-    h1= message
+<html>
+  <head>
+  </head>
+  <body>
+    <form action="/contact-us" method="post"> 
+      Enter your name*: 
+      <br> 
+      <input type="text" name="name" placeholder="Full name" /> 
+      <br> 
+      Enter your email*: 
+      <br> 
+      <input type="email" name="email" placeholder="example@gmail.com"/> 
+      <br>
+      Enter your message: 
+      <br>
+      <textarea name="message" placeholder="Your message"> </textarea>
+      <br>
+      <button> Submit </button> 
+    </form>
+  </body>
+</html>    
