@@ -39,7 +39,7 @@ For example, now you can use express module in your js file as following
 ```console
 var express = require('express');
 ```
-## Excecute app.js
+## Execute app.js
 
 ```console
 > node app.js
