@@ -1,9 +1,6 @@
 // GET method route
 const getContact = (req, res) => { 
-  let queryName = req.query.name;
-  if (queryName == undefined){
-    queryName = "";
-  } 
+  let queryName = req.query.name || '';
   res.render('contact', {name: queryName});
 }  
 
