@@ -1,6 +1,7 @@
 // GET method Admin
 const getAdmin = (req, res) => { 
-    res.render('admin');
+    let queryEmail = req.query.email || '';
+    res.render('admin', {email: queryEmail});
 } 
 
 module.exports = {

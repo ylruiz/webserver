@@ -10,7 +10,9 @@ const postLogin = (req, res) => {
     if (email == "" || password == "" ){
       res.render('login', {email: "", password: ""});
     } else  if (email === "hello@test.com" && password === "hello"){  
-        res.render('admin');
+        let redirectUrl = "/admin/?email="+email;
+        res.redirect(redirectUrl);
+        //res.render('admin', {email: email});
     } else {
         let html = "success";
         res.send(html);
