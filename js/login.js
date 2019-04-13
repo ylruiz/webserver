@@ -5,7 +5,14 @@ const getLogin = (req, res) => {
   
 // POST method Login
 const postLogin = (req, res) => {
-    
+    let email = req.body.email;
+    let password = req.body.password;
+    if (email == "" || password == "" ){
+      res.render('login', {email: "", password: ""});
+    } else {
+      let html = "success";
+      res.send(html);
+    }
 }
   
 module.exports = {
