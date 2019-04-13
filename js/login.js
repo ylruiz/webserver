@@ -9,9 +9,11 @@ const postLogin = (req, res) => {
     let password = req.body.password;
     if (email == "" || password == "" ){
       res.render('login', {email: "", password: ""});
+    } else  if (email === "hello@test.com" && password === "hello"){  
+        res.render('admin');
     } else {
-      let html = "success";
-      res.send(html);
+        let html = "success";
+        res.send(html);
     }
 }
   
