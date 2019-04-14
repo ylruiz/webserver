@@ -1,6 +1,8 @@
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const contactControler = require('./js/contact'); 
+const loginControler = require('./js/login');
+const adminControler = require('./js/admin');
 
 /*
  * body-parser is a piece of express middleware that 
@@ -14,7 +16,7 @@ const bodyParser = require('body-parser');
 
 // create your app
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Configure
 app.set('views', './views')
@@ -33,7 +35,19 @@ app.get('/', (req, res) => {
   res.render('index');
 })
 
+// GET Contact Us
 app.get("/contact-us", contactControler.getContact)
+
+// POST Contact Us
 app.post("/contact-us", contactControler.postContact)
+
+// GET Login
+app.get("/login", loginControler.getLogin)
+
+// POST Login
+app.post("/login", loginControler.postLogin)
+
+// GET Admin
+app.get("/admin", adminControler.getAdmin)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
