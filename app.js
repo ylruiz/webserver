@@ -3,22 +3,15 @@ const mustacheExpress = require('mustache-express');
 const contactControler = require('./js/contact'); 
 const loginControler = require('./js/login');
 const adminControler = require('./js/admin');
-
-/*
- * body-parser is a piece of express middleware that 
- * reads a form's input and stores it as a javascript
- * object accessible through `req.body` 
- *
- * 'body-parser' must be installed (via `npm install body-parser`)
- *  For more info see: https://github.com/expressjs/body-parser
- */
 const bodyParser = require('body-parser');
+const passport = require('./config/passport');
 
 // create your app
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
-// Configure
+/*** START CONFIGURE  ***/
+// Configure view engine to render MUSTACHE templates.
 app.set('views', './views')
 app.engine('mustache', mustacheExpress()) // Register '.mustache' extension with The Mustache Express
 app.set('view engine', 'mustache')
@@ -27,12 +20,24 @@ app.set('view engine', 'mustache')
  * the extension of the partials within the mustache-express method
  */
 app.engine('mustache', mustacheExpress('./views/partials', '.mustache'))
+
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json()); 
+/* app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+})); */
+app.use(passport.initialize());
+app.use(passport.session());
+
+/*** END CONFIGURE ***/
+
+/*** START DEFINE ROUTES ***/
 
 // GET root
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {welcome: ""});
 })
 
 // GET Contact Us
@@ -49,5 +54,29 @@ app.post("/login", loginControler.postLogin)
 
 // GET Admin
 app.get("/admin", adminControler.getAdmin)
+
+// GET login Facebook
+app.get('/login/facebook', passport.authenticate('facebook'))
+
+// GET login Facebook Callback
+app.get('/login/facebook/callback', 
+  passport.authenticate('facebook', { failureRedirect: '/login' }), (req, res) => {
+     // Successful authentication, redirect home.
+     res.redirect('/');
+})
+
+// GET login Google
+app.get('/login/google', 
+  passport.authenticate('google', { scope:[ 'email', 'profile' ]
+}))
+
+// GET login Google Callback
+app.get('/login/google/callback', 
+passport.authenticate( 'google', {
+  successRedirect: '/login/google/success',
+  failureRedirect: '/login/google/failure'
+}))
+
+/*** END DEFINE ROUTES ***/
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
