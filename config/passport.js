@@ -13,6 +13,7 @@ passport.use(new FacebookStrategy({
     clientSecret: FACEBOOK_CLIENT_SECRET,
     callbackURL: FACEBOOK_URL
   }, (accessToken, refreshToken, profile, done) => {
+    // asynchronous verification, for effect...
     console.log(profile);  
     done(null, profile);
 }));
