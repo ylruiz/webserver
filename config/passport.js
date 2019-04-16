@@ -4,8 +4,8 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 // Configure the Facebook strategy for use by Passport.
-const FACEBOOK_CLIENT_ID = '574715039701471';
-const FACEBOOK_CLIENT_SECRET = 'ab4abbf1d4417479e541dcf51455f04a';
+const FACEBOOK_CLIENT_ID = process.env.FACEBOOK_CLIENT_ID;
+const FACEBOOK_CLIENT_SECRET = process.env.FACEBOOK_CLIENT_SECRET;
 const FACEBOOK_URL = "http://localhost:5000/login/facebook/callback";
 
 passport.use(new FacebookStrategy({
@@ -23,8 +23,8 @@ passport.use(new FacebookStrategy({
 }));
 
 // Configure the Google strategy for use by Passport.
-const GOOGLE_CLIENT_ID = 'yunet-webserver';
-const GOOGLE_CLIENT_SECRET = '864342206796';
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const GOOGLE_URL = "http://localhost:5000/login/google/callback";
 
 passport.use(new GoogleStrategy({
@@ -35,23 +35,20 @@ passport.use(new GoogleStrategy({
   }, (request, accessToken, refreshToken, profile, done) => {
     // asynchronous verification, for effect...
     console.log(profile);  
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's Google profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Google account with a user record in your database,
-      // and return that user instead.
-      return done(null, profile);
-    });
+    return done(null, profile);
   }
 ));
 
 // Configure Passport authenticated session persistence.
 passport.serializeUser(function(user, cb) {
+    console.log("serializing user");
+    console.log(user);
     cb(null, user);
 });
   
 passport.deserializeUser(function(obj, cb) {
+    console.log("deserializing user");
+    console.log(obj);
     cb(null, obj);
 });
 

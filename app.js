@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const contactControler = require('./js/contact'); 
@@ -5,6 +6,7 @@ const loginControler = require('./js/login');
 const adminControler = require('./js/admin');
 const bodyParser = require('body-parser');
 const passport = require('./config/passport');
+const cookieParser = require('cookie-parser');
 
 // create your app
 const app = express();
@@ -23,11 +25,12 @@ app.engine('mustache', mustacheExpress('./views/partials', '.mustache'))
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json()); 
-/* app.use(require('express-session')({
-  secret: 'keyboard cat',
+app.use(cookieParser());
+app.use(require('express-session')({
+  secret: 'secret',
   resave: true,
   saveUninitialized: true
-})); */
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -76,6 +79,11 @@ passport.authenticate( 'google', {
   successRedirect: '/login/google/success',
   failureRedirect: '/login/google/failure'
 }))
+
+app.get('/login/google/success', (req,res) => {
+  console.log(JSON.stringify(req.user, null, 2));
+  res.send("Welcome back " + req.user.displayName);
+})
 
 /*** END DEFINE ROUTES ***/
 
