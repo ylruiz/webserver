@@ -35,8 +35,9 @@ passport.use(new GoogleStrategy({
   }, (request, accessToken, refreshToken, profile, done) => {
     // asynchronous verification, for effect...
     console.log(profile);  
-    return cb(null, profile);
-}));
+    return done(null, profile);
+  }
+));
 
 // Configure Passport authenticated session persistence.
 passport.serializeUser(function(user, cb) {
