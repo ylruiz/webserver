@@ -63,9 +63,24 @@ app.get('/login/facebook', passport.authenticate('facebook'))
 
 // GET login Facebook Callback
 app.get('/login/facebook/callback', 
-  passport.authenticate('facebook', { failureRedirect: '/login' }), (req, res) => {
-     // Successful authentication, redirect home.
-     res.redirect('/');
+  passport.authenticate('facebook', {
+    successRedirect: '/login/facebook/success',
+    failureRedirect: '/login/facebook/failure'
+}))
+
+app.get('/login/facebook/callback', 
+  passport.authenticate('facebook', {
+    successRedirect: '/login/facebook/success',
+    failureRedirect: '/login/facebook/failure'
+}))
+
+app.get('/login/facebook/success', (req,res) => {
+  console.log(JSON.stringify(req.user, null, 2));
+  res.send("Welcome back " + req.user.displayName);
+})
+
+app.get('/login/facebook/failure', (req,res) => {
+  res.send("Login with Facebook failed");
 })
 
 // GET login Google
@@ -83,6 +98,10 @@ passport.authenticate( 'google', {
 app.get('/login/google/success', (req,res) => {
   console.log(JSON.stringify(req.user, null, 2));
   res.send("Welcome back " + req.user.displayName);
+})
+
+app.get('/login/google/failure', (req,res) => {
+  res.send("Login with Facebook failed");
 })
 
 /*** END DEFINE ROUTES ***/

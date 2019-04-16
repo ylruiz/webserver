@@ -6,7 +6,7 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 // Configure the Facebook strategy for use by Passport.
 const FACEBOOK_CLIENT_ID = process.env.FACEBOOK_CLIENT_ID;
 const FACEBOOK_CLIENT_SECRET = process.env.FACEBOOK_CLIENT_SECRET;
-const FACEBOOK_URL = "http://localhost:5000/login/facebook/callback";
+const FACEBOOK_URL = "https://yunet-webserver.herokuapp.com/login/facebook/callback";
 
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_CLIENT_ID,
@@ -25,7 +25,7 @@ passport.use(new FacebookStrategy({
 // Configure the Google strategy for use by Passport.
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const GOOGLE_URL = "http://localhost:5000/login/google/callback";
+const GOOGLE_URL = "https://yunet-webserver.herokuapp.com/login/google/callback";
 
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
