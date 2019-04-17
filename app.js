@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const mustacheExpress = require('mustache-express');
+const homeControler = require('./js/home');
 const contactControler = require('./js/contact'); 
 const loginControler = require('./js/login');
 const adminControler = require('./js/admin');
@@ -39,9 +40,7 @@ app.use(passport.session());
 /*** START DEFINE ROUTES ***/
 
 // GET root
-app.get('/', (req, res) => {
-  res.render('index', {welcome: ""});
-})
+app.get('/', homeControler.getHome)
 
 // GET Contact Us
 app.get("/contact-us", contactControler.getContact)
@@ -59,15 +58,9 @@ app.post("/login", loginControler.postLogin)
 app.get("/admin", adminControler.getAdmin)
 
 // GET login Facebook
-app.get('/login/facebook', passport.authenticate('facebook'))
+app.get('/login/facebook', )
 
 // GET login Facebook Callback
-app.get('/login/facebook/callback', 
-  passport.authenticate('facebook', {
-    successRedirect: '/login/facebook/success',
-    failureRedirect: '/login/facebook/failure'
-}))
-
 app.get('/login/facebook/callback', 
   passport.authenticate('facebook', {
     successRedirect: '/login/facebook/success',
