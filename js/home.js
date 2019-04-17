@@ -1,6 +1,6 @@
 // GET ROOT
 const getHome = (req, res) => { 
-    res.render('index',{welcome: ""});
+    res.render('index');
 }  
 
 module.exports = {
