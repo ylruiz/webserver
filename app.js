@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 
 // create your app
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 /*** START CONFIGURE  ***/
 // Configure view engine to render MUSTACHE templates.
