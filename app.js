@@ -8,6 +8,7 @@ const adminControler = require('./js/admin');
 const bodyParser = require('body-parser');
 const passport = require('./config/passport');
 const cookieParser = require('cookie-parser');
+const db = require('./js/db');
 
 // create your app
 const app = express();
