@@ -3,12 +3,12 @@ const express = require('express');
 const mustacheExpress = require('mustache-express');
 const homeControler = require('./js/home');
 const contactControler = require('./js/contact'); 
+const registerControler = require('./js/register');
 const loginControler = require('./js/login');
 const adminControler = require('./js/admin');
 const bodyParser = require('body-parser');
 const passport = require('./config/passport');
 const cookieParser = require('cookie-parser');
-const db = require('./js/db');
 
 // create your app
 const app = express();
@@ -49,6 +49,12 @@ app.get("/contact-us", contactControler.getContact)
 // POST Contact Us
 app.post("/contact-us", contactControler.postContact)
 
+// GET Register
+app.get("/register", registerControler.getRegister)
+
+// POST Register 
+app.post("/register", registerControler.postRegister)
+
 // GET Login
 app.get("/login", loginControler.getLogin)
 
@@ -59,7 +65,7 @@ app.post("/login", loginControler.postLogin)
 app.get("/admin", adminControler.getAdmin)
 
 // GET login Facebook
-app.get('/login/facebook', )
+app.get('/login/facebook', passport.authenticate('facebook'))
 
 // GET login Facebook Callback
 app.get('/login/facebook/callback', 
